@@ -1,0 +1,27 @@
+.movie{
+    display: flex;
+}
+.left{
+    flex-basis: 60%;
+}
+.right{
+    flex-basis: 30%;
+}
+h1{
+    color:#06D6A0;
+    width:65px;
+    text-align: justify;
+}
+.Input{
+    border-radius: 10px;
+    border:1px,black;
+    width:500px;
+    height: 30px;
+}
+.submit{
+    width: 500px;
+    border-radius: 20px;
+    color:white;
+    height: 30px;
+    background-color: #06D6A0;
+}
