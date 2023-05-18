@@ -38,6 +38,9 @@ function Navbar() {
             <li className={styles.navbar__item}>
               <Link to="/movie/top">Top Rated</Link>
             </li>
+            <li className={styles.navbar__item}>
+              <Link to="/coba">Coba</Link>
+            </li>
           </ul>
         </div>
       </nav>

@@ -7,6 +7,7 @@ import PopularMovie from "./pages/movie/Popular";
 import NowPlayingMovie from "./pages/movie/NowPlaying";
 import TopRatedMovie from "./pages/movie/TopRated";
 import Layout from "./Layout";
+import Coba from "./pages/movie/Coba";
 
 function App() {
   /**
@@ -31,6 +32,9 @@ function App() {
           <Route path="/movie/popular" element={<PopularMovie />} />
           <Route path="/movie/now" element={<NowPlayingMovie />} />
           <Route path="/movie/top" element={<TopRatedMovie />} />
+          <Route path="/coba" element={<Coba />} />
+
+
         </Routes>
       </Layout>
     </>

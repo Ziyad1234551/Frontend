@@ -20,9 +20,14 @@ function AddMovieForm(props) {
    * - PROBLEM: 1 ERROR 1 STATE.
    * - TODO: REFACTOR SEMUA ERROR JADI 1 STATE.
    */
-  const [isTitleError, setIsTitleError] = useState(false);
-  const [isDateError, setIsDateError] = useState(false);
-  const [isPosterError, setIsPosterError] = useState(false);
+  const [isError,setIsError] =useState({
+    title:false,
+    date:false,
+    poster:false
+
+
+  })
+  
 
   function handleChange(e) {
     // Destructing name dan value.
@@ -40,20 +45,34 @@ function AddMovieForm(props) {
   }
 
   function validate() {
-    if (title === "") {
-      setIsTitleError(true);
+    if (formData.title === "") {
+      setIsError({
+        ...formData,
+        title:true
+      });
+      return(false);
+    
+    } else if (formData.date === "") {
+     setIsError({
+        ...formData,
+        date:true
+      });
       return false;
-    } else if (date === "") {
-      setIsDateError(true);
-      setIsTitleError(false);
-      return false;
-    } else if (poster === "") {
-      setIsPosterError(true);
-      setIsDateError(false);
+    } else if (formData.poster === "") {
+      setIsError({
+        ...formData,
+      poster:true
+      });
       return false;
     } else {
-      setIsTitleError(false);
-      setIsDateError(false);
+      setIsError({
+        ...formData,
+        date:true
+      });
+       setIsError({
+        ...formData,
+        title:true
+      })
       return true;
     }
   }
@@ -110,7 +129,7 @@ function AddMovieForm(props) {
                * Menambahkan infline if: operator &&
                * Jika isTitleError true maka render error
                */}
-              {isTitleError && <Alert>Title Wajib Diisi</Alert>}
+              {setIsError && <Alert>Title Wajib Diisi</Alert>}
             </div>
             <div className={styles.form__group}>
               <label htmlFor="date" className={styles.form__label}>
@@ -130,7 +149,7 @@ function AddMovieForm(props) {
                * Menambahkan infline if: operator &&
                * Jika isDateError true maka render error
                */}
-              {isDateError && <Alert>Date Wajib Diisi</Alert>}
+              {setIsError && <Alert>Date Wajib Diisi</Alert>}
             </div>
             <div className={styles.form__group}>
               <label htmlFor="poster" className={styles.form__label}>
@@ -144,7 +163,7 @@ function AddMovieForm(props) {
                 type="text"
                 value={poster}
               />
-              {isPosterError && <Alert>Poster Wajib Diisi</Alert>}
+              {setIsError && <Alert>Poster Wajib Diisi</Alert>}
             </div>
             <div className={styles.form__group}>
               <label htmlFor="type" className={styles.form__label}>
