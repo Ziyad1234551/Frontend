@@ -1,4 +1,5 @@
 import Container from "../components/Container";
+import Counter from "../components/Counter/Counter";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
 
@@ -13,6 +14,7 @@ function Layout({ children }) {
   return (
     <>
       <Navbar />
+      <Counter/>
       <main>
         {/*
          * Menggunakan Component Container.
