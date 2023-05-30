@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./Hero.module.css";
+import Button from "../Button";
+import styled from "styled-components";
 function Hero() {
   const [movie,setMovie] = useState("");
 
@@ -16,28 +18,71 @@ function Hero() {
 
 
    console.log(movie)
+   const HeroStyle= styled.div`
+  margin: 5rem auto;
+  padding: 1rem;
+  display: flex;
+   
+   `
+   const SectionStyle = styled.section`
+   display: flex;
+   text-align: center;
+   flex-direction: row;
+
+   
+   .hero__left{
+    margin-bottom: 1rem;
+
+  }
+  .hero__right{
+    flex-basis: 60%;
+
+  }
+  h2{
+    color: #4361ee;
+  margin-bottom: 1rem;
+  font-size: 2.44rem;
+  }
+  h3{
+    color: #b5179e;
+  margin-bottom: 1rem;
+  font-size: 1.59rem;
+  }
+  p{
+    color: #64748b;
+  margin-bottom: 1rem;
+  }
+  img{
+  max-width: 100%;
+  height: auto;
+  border-radius: 25px;
+  }
+   `;
+
   return (
-    <div className={styles.container}>
-      <section className={styles.hero}>
-        <div className={styles.hero__left}>
-          <h2 className={styles.hero__title}>{movie.Title}</h2>
-          <h3 className={styles.hero__genre}>
+    <HeroStyle>
+      <SectionStyle >
+        <div className="hero__left">
+          <h2>{movie.Title}</h2>
+          <h3>
            {movie.Genre}
           </h3>
-          <p className={styles.hero__description}>
+          <p>
            {movie.Plot}
           </p>
-          <button className={styles.hero__button}>Watch</button>
+          <Button variant="primary" size="md">Watch</Button>
+
+
+
         </div>
         <div className="hero__right">
           <img
-            className={styles.hero__image}
             src= {movie.Poster}
             alt="placeholder"
           />
         </div>
-      </section>
-    </div>
+      </SectionStyle>
+    </HeroStyle>
   );
 }
 

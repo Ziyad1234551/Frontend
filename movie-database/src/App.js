@@ -8,7 +8,9 @@ import NowPlayingMovie from "./pages/movie/NowPlaying";
 import TopRatedMovie from "./pages/movie/TopRated";
 import Layout from "./Layout";
 import Coba from "./pages/movie/Coba";
-
+import theme from "./components/theme";
+// mengimport theme provider
+import { ThemeProvider } from "styled-components";
 function App() {
   /**
    * Tag div bisa diganti dengan tag <>.
@@ -16,10 +18,13 @@ function App() {
    */
   return (
     <>
+    <ThemeProvider theme={theme}>
+
       {/*
        * Setiap halaman dibungkus olah Layout.
        * Layout digunakan oleh setiap halaman yang dirender.
        */}
+       
       <Layout>
         {/*
          * Membuat Routing.
@@ -37,6 +42,7 @@ function App() {
 
         </Routes>
       </Layout>
+    </ThemeProvider>
     </>
   );
 }
