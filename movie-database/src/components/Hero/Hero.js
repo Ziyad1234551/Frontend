@@ -2,73 +2,96 @@ import { useEffect, useState } from "react";
 import styles from "./Hero.module.css";
 import Button from "../Button";
 import styled from "styled-components";
+import axios from "axios";
 function Hero() {
   const [movie,setMovie] = useState("");
+  const API_KEY = process.env.REACT_APP_API_KEY;
 
-  async function fetchMovie(){
-    const url = "https://www.omdbapi.com/?apikey=fcf50ae6&i=tt2975590";
-    const response = await fetch(url);
-    const data = await response.json();
-    setMovie(data);
-  
+
+  async function getTrendingMovie() {
+    const url = `https://api.themoviedb.org/3/trending/movie/day?api_key=c12312a5332f3eb3ed205859494e9ae8`;
+    const response = await axios(url);
+    return response.data.results[0];
   }
-   useEffect(()=>{
-    fetchMovie();
-   },[]);
-
+async function getDetailMovie() {
+    const trendingMovie = await getTrendingMovie();
+    const id = trendingMovie.id;
+    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos`;
+    const response = await axios(url);
+    setMovie(response.data);
+  }
+useEffect(()=>{
+  getDetailMovie();
+});
 
    console.log(movie)
    const HeroStyle= styled.div`
-  margin: 5rem auto;
+ margin: 5rem auto;
   padding: 1rem;
-  display: flex;
+
+  @media screen and (min-width: 992px) {
+    max-width: 1200px;
+  }
+`;
    
-   `
+  
    const SectionStyle = styled.section`
    display: flex;
-   text-align: center;
-   flex-direction: row;
+  flex-direction: column;
+  text-align: center;
 
-   
-   .hero__left{
+  .hero__left {
     margin-bottom: 1rem;
-
   }
-  .hero__right{
-    flex-basis: 60%;
 
-  }
-  h2{
+  h2 {
     color: #4361ee;
-  margin-bottom: 1rem;
-  font-size: 2.44rem;
+    margin-bottom: 1rem;
+    font-size: 2.44rem;
   }
-  h3{
+
+  h3 {
     color: #b5179e;
-  margin-bottom: 1rem;
-  font-size: 1.59rem;
+    margin-bottom: 1rem;
+    font-size: 1.59rem;
   }
-  p{
+
+  p {
     color: #64748b;
-  margin-bottom: 1rem;
+    margin-bottom: 1rem;
   }
-  img{
-  max-width: 100%;
-  height: auto;
-  border-radius: 25px;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 25px;
   }
-   `;
+
+  @media screen and (min-width: 769px) {
+  }
+
+  @media screen and (min-width: 992px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+
+    .hero__left {
+      flex-basis: 40%;
+    }
+  }
+`;
 
   return (
     <HeroStyle>
       <SectionStyle >
         <div className="hero__left">
-          <h2>{movie.Title}</h2>
+          <h2>{movie.title}</h2>
           <h3>
-           {movie.Genre}
+           how to show all genre?
           </h3>
           <p>
-           {movie.Plot}
+           {movie.overview}
           </p>
           <Button variant="primary" size="md">Watch</Button>
 
@@ -77,7 +100,7 @@ function Hero() {
         </div>
         <div className="hero__right">
           <img
-            src= {movie.Poster}
+            src= {`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
             alt="placeholder"
           />
         </div>

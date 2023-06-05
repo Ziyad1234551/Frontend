@@ -28,7 +28,7 @@ function Movies(props) {
         <section className={styles.movies}>
           <h2 className={styles.movies__title}>Latest Movies</h2>
           <div className={styles.movie__container}>
-            {movies.map((movie) => {
+          {movies.map((movie) => {
               return <Movie key={movie.id} movie={movie} />;
             })}
           </div>
