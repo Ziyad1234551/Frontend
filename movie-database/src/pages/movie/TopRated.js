@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import Hero from "../../components/Hero/Hero";
 import Movies from "../../components/Movies/Movies";
 import axios from "axios";
+import ENDPOINTS from "../../ENDPOINT";
+
+
 function TopRatedMovie() {
-  const API_KEY =process.env.REACT_APP_API_KEY;
-  const url = `https://api.themoviedb.org/3/movie/top_rated//?api_key=${API_KEY}`;
+  const url = ENDPOINTS.TOP_RATED;
  
   const[movies,setMovies] = useState([]);
  useEffect(()=>{

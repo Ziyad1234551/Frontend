@@ -3,13 +3,14 @@ import styles from "./Hero.module.css";
 import Button from "../Button";
 import styled from "styled-components";
 import axios from "axios";
+import ENDPOINTS from "../../ENDPOINT";
 function Hero() {
   const [movie,setMovie] = useState("");
   const API_KEY = process.env.REACT_APP_API_KEY;
 
 
   async function getTrendingMovie() {
-    const url = `https://api.themoviedb.org/3/trending/movie/day?api_key=c12312a5332f3eb3ed205859494e9ae8`;
+    const url = ENDPOINTS.TRENDING;
     const response = await axios(url);
     return response.data.results[0];
   }
