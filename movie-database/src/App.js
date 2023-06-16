@@ -13,13 +13,21 @@ import theme from "./components/theme";
 import { ThemeProvider } from "styled-components";
 import Detail from "./pages/movie/Detail";
 import Trending from "./pages/movie/Trending";
+import { useState } from "react";
+import data from "./utils/constants/data";
+import { Provider } from "react-redux";
+import store from "./features/Store/store";
 function App() {
   /**
    * Tag div bisa diganti dengan tag <>.
    * Tag <> adalah React fragment
    */
+    const [movies, setMovies] = useState(data);
+
   return (
     <>
+    <Provider store={store}>
+
     <ThemeProvider theme={theme}>
 
       {/*
@@ -34,8 +42,8 @@ function App() {
          * Buat Routing menggunakan Route.
          */}
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/movie/create" element={<CreateMovie />} />
+          <Route path="/" element={<Home/>}></Route>
+          <Route path="/movie/create" element={<CreateMovie movies={movies} setMovies={setMovies} />} />
           <Route path="/movie/:id" element={<Detail />} />
 
           <Route path="/movie/popular" element={<PopularMovie />} />
@@ -47,6 +55,7 @@ function App() {
         </Routes>
       </Layout>
     </ThemeProvider>
+    </Provider>
     </>
   );
 }

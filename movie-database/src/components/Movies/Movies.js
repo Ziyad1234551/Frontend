@@ -1,26 +1,13 @@
 import { nanoid } from "nanoid";
 import Movie from "../Movie/Movie";
 import styles from "./Movies.module.css";
-
-function Movies(props) {
+import { useSelector } from "react-redux";
+function Movies({title}) {
   // Destructing props: state movies
-  const { movies, setMovies } = props;
+  const movies = useSelector((store)=> store.movies.movies)
+  
 
-  function handleClick() {
-    const movie = {
-      id: nanoid(),
-      title: "Jigsaw Spiral",
-      year: 2021,
-      type: "Movie",
-      poster: "https://picsum.photos/300/400",
-    };
-
-    /**
-     * Update state movies: setMovies
-     * Melakukan teknik spread untuk copy dan merge array
-     */
-    setMovies([...movies, movie]);
-  }
+ 
 
   return (
     <div>
@@ -32,7 +19,6 @@ function Movies(props) {
               return <Movie key={movie.id} movie={movie} />;
             })}
           </div>
-          <button onClick={handleClick}>Add Movie</button>
         </section>
       </div>
     </div>

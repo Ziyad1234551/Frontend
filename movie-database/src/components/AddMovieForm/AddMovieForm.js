@@ -2,11 +2,15 @@ import { nanoid } from "nanoid";
 import { useState } from "react";
 import Alert from "../Alert/Alert";
 import styles from "./AddMovieForm.module.css";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 // Menangkap props
 function AddMovieForm(props) {
   // Destructing props: state movies
   const { movies, setMovies } = props;
+  const Navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     title: "",
@@ -87,7 +91,8 @@ function AddMovieForm(props) {
     };
 
     // SOLVED: HOW TO ADD MOVIE TO MOVIES :)
-    setMovies([...movies, movie]);
+    dispatch(addMovie(movie));
+    Navigate("/");
   }
 
   function handleSubmit(e) {
