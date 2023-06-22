@@ -1,0 +1,67 @@
+.province{
+    /* Provinsi Table */
+
+
+position: absolute;
+width: 1320px;
+height: 731px;
+top: 1499px;
+
+}
+.title2{
+ font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 61px;
+line-height: 92px;
+/* identical to box height */
+
+text-align: center;
+
+/* Primary */
+
+color: #06D6A0;
+
+}
+.subtitle2{
+font-family: 'Poppins';
+text-align: center;
+font-style: normal;
+font-weight: 400;
+font-size: 25px;
+line-height: 38px;
+/* identical to box height */
+
+
+/* Secondary */
+
+color: #118AB2;
+}
+table{
+position: absolute;
+width: 813px;
+height: 285px;
+left: 263px;
+top: 300px;
+}
+th{
+    color: #06D6A0;
+}
+
+td{
+
+}
+table,th,td{
+    border: 2px solid #073B4C ;
+    border-collapse: collapse;
+    background: #FFFFFF;
+/* Gray Color */
+
+border: 1px solid #64748B;
+text-align: center;
+
+
+}
+th{
+    color: #06D6A0;
+}
